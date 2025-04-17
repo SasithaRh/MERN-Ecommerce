@@ -1,34 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
+import './App.css'
+import { useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
+import AuthLogin from "./pages/auth/login";
+import AuthRegister from "./pages/auth/register";
+import AuthLayout from './components/auth/layout';
+import CheckAuth from "./components/common/check-auth";
+import { useDispatch, useSelector } from "react-redux";
+import { checkAuth } from "./store/auth-slice";
+import { Skeleton } from "@/components/ui/skeleton";
 function App() {
-  const [count, setCount] = useState(0)
+
+  const { user, isAuthenticated, isLoading } = useSelector(
+    (state) => state.auth
+  );
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(checkAuth());
+  }, [dispatch]);
+
+   if (isLoading) return <Skeleton className="w-[800] bg-black h-[600px]" />;
 
   return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="flex flex-col overflow-hidden bg-white">
+      <Routes>
+      <Route
+          path="/"
+          element={
+            <CheckAuth
+              isAuthenticated={isAuthenticated}
+              user={user}
+            ></CheckAuth>
+          }
+        />
+      <Route
+          path="/auth"
+          element={
+            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+               <AuthLayout />
+              </CheckAuth>
+          }
+        >
+          <Route path="login" element={<AuthLogin />} />
+          <Route path="register" element={<AuthRegister />} />
+        </Route>
+       </Routes>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p className='text-red-500 bg-slate-500' >
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
   )
 }
 

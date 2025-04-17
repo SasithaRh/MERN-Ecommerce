@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
-import userRouter from './routes/user.route.js';
+import authRouter from './routes/auth/auth-routes.js';
 import cors from "cors";
 
 dotenv.config();
@@ -34,8 +34,8 @@ app.use(
 
 app.use(cookieParser());
 app.use(express.json());
+app.use("/api/auth", authRouter);
 
-app.use('/api/user', userRouter);
 app.listen(5000, () => {
-    console.log('Server is running on port 3000!!!');
+    console.log('Server is running on port 5000!!!');
   });

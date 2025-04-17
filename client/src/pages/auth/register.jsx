@@ -5,7 +5,7 @@ import { registerUser } from "@/store/auth-slice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
-
+import { UserPlus2 } from "lucide-react";
 const initialState = {
   userName: "",
   email: "",
@@ -38,29 +38,33 @@ function AuthRegister() {
   console.log(formData);
 
   return (
-    <div className="mx-auto w-full max-w-md space-y-6">
-      <div className="text-center">
-        <h1 className="text-3xl text-cyan-500 font-bold tracking-tight ">
-          Create new account
-        </h1>
-        <p className="mt-2">
-          Already have an account
-          <Link
-            className="font-medium ml-2 text-primary hover:underline hover:text-cyan-400"
-            to="/auth/login"
-          >
-            Login
-          </Link>
-        </p>
+    <div className="mx-auto w-full max-w-md space-y-8 bg-white dark:bg-background rounded-2xl shadow-xl p-8 sm:p-10">
+    <div className="text-center">
+      <div className="flex justify-center items-center mb-4">
+        <UserPlus2 className="h-10 w-10 text-cyan-500" />
       </div>
-      <CommonForm
-        formControls={registerFormControls}
-        buttonText={"Sign Up"}
-        formData={formData}
-        setFormData={setFormData}
-        onSubmit={onSubmit}
-      />
+      <h1 className="text-3xl font-extrabold text-cyan-500 tracking-tight">
+        Create New Account
+      </h1>
+      <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
+        Already have an account?
+        <Link
+          className="ml-2 text-cyan-600 hover:text-cyan-400 hover:underline transition"
+          to="/auth/login"
+        >
+          Login
+        </Link>
+      </p>
     </div>
+
+    <CommonForm
+      formControls={registerFormControls}
+      buttonText="Sign Up"
+      formData={formData}
+      setFormData={setFormData}
+      onSubmit={onSubmit}
+    />
+  </div>
   );
 }
 

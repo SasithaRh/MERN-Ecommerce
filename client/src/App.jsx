@@ -6,6 +6,8 @@ import AuthLogin from "./pages/auth/login";
 import AuthRegister from "./pages/auth/register";
 import AuthLayout from './components/auth/layout';
 import CheckAuth from "./components/common/check-auth";
+import AdminLayout from "./components/admin-view/layout";
+import AdminDashboard from "./pages/admin-view/dashboard";
 import { useDispatch, useSelector } from "react-redux";
 import { checkAuth } from "./store/auth-slice";
 import { Skeleton } from "@/components/ui/skeleton";
@@ -20,10 +22,10 @@ function App() {
     dispatch(checkAuth());
   }, [dispatch]);
 
-   if (isLoading) return <Skeleton className="w-[800] bg-black h-[600px]" />;
+   if (isLoading) return <Skeleton className="w-full bg-black h-[500px]" />;
 
   return (
-    <div className="flex flex-col overflow-hidden bg-white">
+    
       <Routes>
       <Route
           path="/"
@@ -45,8 +47,18 @@ function App() {
           <Route path="login" element={<AuthLogin />} />
           <Route path="register" element={<AuthRegister />} />
         </Route>
+        <Route
+          path="/admin"
+          element={
+            <CheckAuth isAuthenticated={isAuthenticated} user={user}>
+              <AdminLayout />
+            </CheckAuth>
+          }
+        >
+          <Route path="dashboard" element={<AdminDashboard />} />
+          </Route>
        </Routes>
-      </div>
+      
   )
 }
 

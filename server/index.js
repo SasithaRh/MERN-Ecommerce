@@ -4,6 +4,7 @@ import dotenv from 'dotenv';
 import cookieParser from 'cookie-parser';
 import authRouter from './routes/auth/auth-routes.js';
 import cors from "cors";
+import adminProductsRouter from "./routes/admin/products-routes.js";
 
 dotenv.config();
 
@@ -35,7 +36,7 @@ app.use(
 app.use(cookieParser());
 app.use(express.json());
 app.use("/api/auth", authRouter);
-
+app.use("/api/admin/products", adminProductsRouter);
 app.listen(5000, () => {
     console.log('Server is running on port 5000!!!');
   });

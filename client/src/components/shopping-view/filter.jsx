@@ -17,12 +17,12 @@ function ProductFilter({ filters, handleFilter }) {
         {Object.keys(filterOptions).map((keyItem, idx) => (
           <Fragment key={keyItem}>
             <div>
-            <div className="flex items-center gap-2 mb-3">
-                  
-                  <h2 className=" text-lg font-semibold text-cyan-500 dark:text-gray-300 tracking-wide">
-                    {keyItem}
-                  </h2>
-                </div>
+              <div className="flex items-center gap-2 mb-3">
+
+                <h2 className=" text-lg font-semibold text-cyan-500 dark:text-gray-300 tracking-wide">
+                  {keyItem}
+                </h2>
+              </div>
               <div className="grid gap-3">
                 {filterOptions[keyItem].map((option) => (
                   <Label
@@ -31,9 +31,8 @@ function ProductFilter({ filters, handleFilter }) {
                   >
                     <Checkbox
                       checked={
-                        filters &&
-                        filters[keyItem] &&
-                        filters[keyItem].includes(option.id)
+                        filters && Object.keys(filters).length > 0 &&
+                        filters[keyItem] && filters[keyItem].indexOf(option.id) > -1
                       }
                       onCheckedChange={() => handleFilter(keyItem, option.id)}
                     />

@@ -1,7 +1,8 @@
 import express from "express";
 
 import {
-  getFilteredProducts
+  getFilteredProducts,
+ 
 
 } from "../../controllers/shop/products-controller.js";
 

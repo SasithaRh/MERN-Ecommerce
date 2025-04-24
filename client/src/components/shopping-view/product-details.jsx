@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 function ProductDetailsDialog({ open, setOpen, productDetails }) {
   const dispatch = useDispatch();
   const { user } = useSelector((state) => state.auth);
-
+  const { cartItems } = useSelector((state) => state.shopCart);
 
   const { toast } = useToast();
 
@@ -53,9 +53,14 @@ function ProductDetailsDialog({ open, setOpen, productDetails }) {
     });
   }
 
+  function handleDialogClose() {
+    setOpen(false);
+    dispatch(setProductDetails());
+ 
+  }
 
   return (
-    <Dialog open={open} onOpenChange={setOpen}>
+    <Dialog open={open} onOpenChange={handleDialogClose}>
       <DialogContent className="grid grid-cols-2 gap-8 sm:p-12 max-w-[90vw] sm:max-w-[80vw] lg:max-w-[70vw]">
         <div className="relative overflow-hidden rounded-lg">
           <img

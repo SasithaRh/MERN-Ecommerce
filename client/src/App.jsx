@@ -9,6 +9,7 @@ import CheckAuth from "./components/common/check-auth";
 import AdminLayout from "./components/admin-view/layout";
 import AdminDashboard from "./pages/admin-view/dashboard";
 import AdminProducts from "./pages/admin-view/products";
+import AdminOrders from "./pages/admin-view/orders";
 import ShoppingLayout from "./components/shopping-view/layout";
 import ShoppingHome from "./pages/shopping-view/home";
 import ShoppingListing from "./pages/shopping-view/listing";
@@ -63,7 +64,7 @@ function App() {
         >
           <Route path="dashboard" element={<AdminDashboard />} />
           <Route path="products" element={<AdminProducts />} />
-        
+          <Route path="orders" element={<AdminOrders />} />
           </Route>
           <Route
           path="/shop"

@@ -7,6 +7,7 @@ import cors from "cors";
 import adminProductsRouter from "./routes/admin/products-routes.js";
 import shopProductsRouter from "./routes/shop/products-routes.js";
 import shopCartRouter from "./routes/shop/cart-routes.js";
+import shopAddressRouter from "./routes/shop/address-routes.js";
 
 dotenv.config();
 
@@ -41,6 +42,7 @@ app.use("/api/auth", authRouter);
 app.use("/api/admin/products", adminProductsRouter);
 app.use("/api/shop/products", shopProductsRouter);
 app.use("/api/shop/cart", shopCartRouter);
+app.use("/api/shop/address", shopAddressRouter);
 app.listen(5000, () => {
     console.log('Server is running on port 5000!!!');
   });

@@ -12,7 +12,7 @@ import {
 } from "../ui/table";
 
 import { useDispatch, useSelector } from "react-redux";
-
+import ShoppingOrderDetailsView from "./order-details";
 import { Badge } from "../ui/badge";
 
 function ShoppingOrders() {
@@ -50,44 +50,39 @@ function ShoppingOrders() {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {orderList && orderList.length > 0
-              ? orderList.map((orderItem) => (
+            
                   <TableRow>
-                    <TableCell>{orderItem?._id}</TableCell>
-                    <TableCell>{orderItem?.orderDate.split("T")[0]}</TableCell>
+                    <TableCell>2321</TableCell>
+                    <TableCell>122321</TableCell>
                     <TableCell>
                       <Badge
-                        className={`py-1 px-3 ${
-                          orderItem?.orderStatus === "confirmed"
-                            ? "bg-green-500"
-                            : orderItem?.orderStatus === "rejected"
-                            ? "bg-red-600"
-                            : "bg-black"
-                        }`}
+                        className={`py-1 px-3 bg-green-500`
+                           }
                       >
-                        {orderItem?.orderStatus}
+                        confirmed
                       </Badge>
                     </TableCell>
-                    <TableCell>${orderItem?.totalAmount}</TableCell>
+                    <TableCell>$213213</TableCell>
                     <TableCell>
                       <Dialog
                         open={openDetailsDialog}
-                        onOpenChange={() => {
-                          setOpenDetailsDialog(false);
+                        onOpenChange={
+                          setOpenDetailsDialog
                         
-                        }}
+                        }
                       >
                         <Button
-                        
+                          onClick={() =>
+                            setOpenDetailsDialog(true)
+                          }
                         >
                           View Details
                         </Button>
-                        <ShoppingOrderDetailsView orderDetails={orderDetails} />
+                        <ShoppingOrderDetailsView  />
                       </Dialog>
                     </TableCell>
                   </TableRow>
-                ))
-              : null}
+               
           </TableBody>
         </Table>
       </CardContent>

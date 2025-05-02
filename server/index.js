@@ -11,6 +11,9 @@ import shopCartRouter from "./routes/shop/cart-routes.js";
 import shopAddressRouter from "./routes/shop/address-routes.js";
 import shopOrderRouter from "./routes/shop/order-routes.js";
 import shopSearchRouter from "./routes/shop/search-routes.js";
+import shopReviewRouter from "./routes/shop/review-routes.js";
+
+
 dotenv.config();
 
 mongoose
@@ -49,7 +52,7 @@ app.use("/api/shop/cart", shopCartRouter);
 app.use("/api/shop/address", shopAddressRouter);
 app.use("/api/shop/order", shopOrderRouter);
 app.use("/api/shop/search", shopSearchRouter);
-
+app.use("/api/shop/review", shopReviewRouter);
 app.listen(5000, () => {
     console.log('Server is running on port 5000!!!');
   });
